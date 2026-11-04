@@ -51,24 +51,20 @@ contract Funding {
         require(success, "Transfer is failed");
         emit Withdrawal(msg.sender, _crypto);
     }
-
     // Total Balance are Deposite by the people 
    function totalDeposit() public view returns (uint256) {
     return totalContributions;
-}
-
+   }
     // Total Balance in the Contract
     function totalContract() public view returns(uint) {
         return address(this).balance;
     }
-    
     // Receive Function
     receive() external payable {
         require(msg.sender != address(0), "Invalid addres");
         require(msg.value > 0, "Amount ahoud be greate then zero");
         total += msg.value;
     }
-
     // Fallback Function
      fallback() external payable {
         require(msg.sender != address(0), "Invalid addres");
